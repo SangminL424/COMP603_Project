@@ -1,0 +1,10 @@
+What is the capital city of France?=c=(a)Madrid (b)Berlin (c)Paris (d)Rome
+Which planet is known as the Red Planet?=b=(a)Earth (b)Mars (c)Venus (d)Jupiter
+What is the largest mammal in the world?=b=(a)African Elephant (b)Blue Whale (c)Great White Shark (d)Giraffe
+Which element has the chemical symbol 'O'?=a=(a)Oxygen (b)Gold (c)Iron (D)Silver
+Who wrote the play "Romeo and Juliet"?=b=(a)Charles Dickens (b)William Shakespeare (c)Mark Twain (d)Jane Austen
+What is the primary language spoken in Brazil?=c=(a)Spanish (b)French (c)Portuguese (d)English
+What is the chemical formula for water?=b=(a)CO2 (b)H2O (c)NaCl (d)O2
+Who was the first president of the United States?=b=(a)Abraham Lincoln (b)George Washington (c)Thomas Jefferson (d)John Adams
+Which programming language is primarily used for Android app development?=c=(a)Python (b)Swift (c)Java (d)Ruby
+Which organ in the human body is responsible for pumping blood?=d=(a)Brain (b)Lungs (c)Liver (d)Heart
