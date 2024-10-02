@@ -11,6 +11,7 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("You clicked the start button");
+                view.startQuiz();
             }
         });
     }
