@@ -29,6 +29,9 @@ public class View extends JFrame {
     JButton optionC = new JButton("C");
     JButton optionD = new JButton("D");
     
+    JButton trueButton = new JButton("True");
+    JButton falseButton = new JButton("False");
+    
     JButton quitButton = new JButton("quit game");
     JButton answerButton = new JButton("answer");
     
@@ -53,6 +56,11 @@ public class View extends JFrame {
     }
 
     public void startQuiz() {
+        //multiChoiceScreen();
+        trueOrFalseScreen();
+    }
+    
+    public void multiChoiceScreen() {
         this.setLayout(new GridLayout(3, 1));
         
         questionPanel.add(question);
@@ -67,7 +75,29 @@ public class View extends JFrame {
         userPanel.add(answerButton);
         userPanel.add(quitButton);
         
+        this.getContentPane().removeAll();
+        questionPanel.setVisible(true);
+        buttonPanel.setVisible(true);
+        userPanel.setVisible(true);
+        this.add(questionPanel);
+        this.add(buttonPanel);
+        this.add(userPanel);
+        this.revalidate();
+        this.repaint();
+    }
+    
+    public void trueOrFalseScreen(){
+        this.setLayout(new GridLayout(3, 1));
         
+        questionPanel.add(question);
+        
+        buttonPanel.add(trueButton);
+        buttonPanel.add(falseButton);
+        
+        buttonPanel.setLayout(new GridLayout(1, 2));
+
+        userPanel.add(answerButton);
+        userPanel.add(quitButton);
         
         this.getContentPane().removeAll();
         questionPanel.setVisible(true);
