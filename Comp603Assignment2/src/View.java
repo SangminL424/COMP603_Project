@@ -109,4 +109,14 @@ public class View extends JFrame {
         this.revalidate();
         this.repaint();
     }
+    
+    
+    public void resetPanel(){
+        System.out.println("Game has been reset");
+        this.getContentPane().removeAll();
+        startPanel.setVisible(true);
+        this.add(startPanel);
+        this.revalidate();
+        this.repaint();
+    }
 }

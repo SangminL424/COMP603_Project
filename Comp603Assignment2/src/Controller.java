@@ -1,6 +1,7 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.SwingUtilities;
 
 public class Controller {
 
@@ -51,8 +52,30 @@ public class Controller {
         view.quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                view.quitScreen();
+                quitGame();
             }
         });
+    }
+
+    public void quitGame() {
+        System.out.println("You clicked the quit button");
+        
+        view.quitScreen();
+
+        removeListeners(view.resetButton);
+
+        view.resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.resetPanel();
+
+            }
+        });
+    }
+
+    public void removeListeners(javax.swing.JButton button) {
+        for (ActionListener al : button.getActionListeners()) {
+            button.removeActionListener(al);
+        }
     }
 }
