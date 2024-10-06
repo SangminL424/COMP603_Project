@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class View extends JFrame {
@@ -16,11 +17,14 @@ public class View extends JFrame {
     JPanel userPanel = new JPanel();
     JPanel loserPanel = new JPanel();
     JPanel quitPanel = new JPanel();
-
+    
     JLabel titleLabel = new JLabel("Who wants to be a millionaire?");
     JLabel question = new JLabel("Question");
     JLabel loserMessage = new JLabel("You lose");
     JLabel quitMessage = new JLabel("You quit");
+    
+    JLabel userName = new JLabel("Username: ");
+    JTextField inputUsername = new JTextField(10);
     
     JButton startButton = new JButton("Click button to start the quiz");
 
@@ -49,19 +53,22 @@ public class View extends JFrame {
         
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         
-        startPanel.add(titleLabel, BorderLayout.CENTER);
+        startPanel.add(titleLabel, BorderLayout.NORTH);
+        startPanel.add(userName);
+        //startPanel.add(inputUsername);
         startPanel.add(startButton, BorderLayout.SOUTH);
 
         this.add(startPanel);
     }
-
-    public void startQuiz() {
-        //multiChoiceScreen();
-        trueOrFalseScreen();
-    }
     
     public void multiChoiceScreen() {
         this.setLayout(new GridLayout(3, 1));
+        
+        questionPanel.removeAll();
+        buttonPanel.removeAll();
+        userPanel.removeAll();
+        
+        
         
         questionPanel.add(question);
         
@@ -88,6 +95,12 @@ public class View extends JFrame {
     
     public void trueOrFalseScreen(){
         this.setLayout(new GridLayout(3, 1));
+        
+        questionPanel.removeAll();
+        buttonPanel.removeAll();
+        userPanel.removeAll();
+        
+        
         
         questionPanel.add(question);
         
