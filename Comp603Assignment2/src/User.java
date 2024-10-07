@@ -19,6 +19,7 @@ public class User {
     HashMap<String, Integer> users = fileIO.load("./folder/player_earnings.txt");
 
     Earnings earnings = new Earnings();
+    DatabaseHelper db = new DatabaseHelper();
 
     public void askUsername() {  //asks the user for their name
         System.out.println("What is your name?");

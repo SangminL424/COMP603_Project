@@ -20,6 +20,9 @@ public class QuizGame {
         QuizGenerator quizgen = new QuizGenerator();
         Earnings earnings = new Earnings();
         User user = new User();
+         DatabaseHelper db = new DatabaseHelper();
+         
+         db.createTables(); // initializing data base tables
         
         try {
             for (int i = 0; i < rounds; i++) {  //there are 10 rounds
