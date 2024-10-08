@@ -6,6 +6,7 @@ import java.util.Random;
 public class Controller {
 
     View view = new View();
+    Model model = new Model();
 
     public Controller(View view) {
         this.view = view;
@@ -14,7 +15,10 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("You clicked the start button");
-                startQuiz();
+                model.setUsername(view.inputUsername.getText());
+                if(model.checkUsername()){
+                    startQuiz();
+                }
             }
         });
     }

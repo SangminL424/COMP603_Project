@@ -3,9 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,23 +18,7 @@ import java.util.Scanner;
 public class User {
 
     private String username;
-    Scanner scan = new Scanner(System.in);
-    Database fileIO = new Database();
 
-    Earnings earnings = new Earnings();
-
-    public void askUsername() {  //asks the user for their name
-        
-    }
-
-    public void askUserQuit(int round) {  //asks the user if they would like to continue or quit
-        
-    }
-
-    public void askWinnerName(){  //asks for the winner's name
-       
-    }
-    
     /**
      * @return the username
      */
