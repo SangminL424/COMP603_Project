@@ -19,12 +19,12 @@ import java.util.logging.Logger;
 public class Model {
 
     Database database = new Database();
-    User user = new User();
+    UserInfo user = new UserInfo();
 
     public Model() {
         database.dbsetup();
     }
-
+    
     public void setUsername(String username){
         user.setUsername(username);
     }
@@ -36,7 +36,7 @@ public class Model {
             Statement statement = database.conn.createStatement();
             ResultSet rs = statement.executeQuery("SELECT userid, score FROM UserInfo "
                     + "WHERE userid = '" + user.getUsername() + "'");
-            if(rs.next()){
+            if (rs.next()) {
                 System.out.println("found user");
                 userCheck = true;
             } else {
@@ -46,9 +46,23 @@ public class Model {
                 userCheck = true;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return userCheck;
     }
+
+    public void quitGame() {
+
+        Statement statement;
+        try {
+            statement = database.conn.createStatement();
+            statement.executeUpdate("UPDATE UserInfo SET score=" + user.getScore() + " WHERE userid='" + user.getUsername() + "'");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    
 }

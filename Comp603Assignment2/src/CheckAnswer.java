@@ -12,8 +12,7 @@ import java.util.ArrayList;
  */
 public class CheckAnswer {
 
-    User user = new User();
-    Earnings earning = new Earnings();
+    UserInfo user = new UserInfo();
 
     public void checkMultiChoiceAnswer(int index, char input) {  //checks answers for multichoice questions
         MultiChoice multi = new MultiChoice();

@@ -8,8 +8,9 @@ public class Controller {
     View view = new View();
     Model model = new Model();
 
-    public Controller(View view) {
+    public Controller(View view, Model model) {
         this.view = view;
+        this.model = model;
 
         view.startButton.addActionListener(new ActionListener() {
             @Override
@@ -109,6 +110,7 @@ public class Controller {
         view.quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                model.quitGame();
                 quitGame();
             }
         });
@@ -124,7 +126,6 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 view.resetPanel();
-
             }
         });
     }
