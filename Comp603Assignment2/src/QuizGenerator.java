@@ -19,9 +19,8 @@ public class QuizGenerator {
 
     public void handleTypes(int type, int rounds) {  //prints different questions depending on the type
         if (type == 0) {  //if the type is 0
-            multi.getQuestionType(type);  //prints the question type
-            multi.printQuestion(rounds);  //prints a multichoice question
-            multi.printOptions(rounds);  //prints the options for the multichoice question
+            
+              //prints the options for the multichoice question
 
             char input = scan.nextLine().charAt(0);
             
@@ -35,7 +34,7 @@ public class QuizGenerator {
             checkAnswer.checkMultiChoiceAnswer(rounds, input);  //checks the multichoice answer
         }
         if (type == 1) {
-            truefalse.getQuestionType(type);
+            
             truefalse.printQuestion(rounds);
             char input = scan.nextLine().charAt(0);
 

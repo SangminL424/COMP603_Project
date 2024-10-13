@@ -19,10 +19,6 @@ public class UserInfo {
 
     private String username;
     private int score = 0;
-    
-    Database database = new Database();
-
-    
 
     public void earningsPerRound(int round) {  //amount of earned money goes up every round
 

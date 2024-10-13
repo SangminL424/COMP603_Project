@@ -16,7 +16,7 @@ public class CheckAnswer {
 
     public void checkMultiChoiceAnswer(int index, char input) {  //checks answers for multichoice questions
         MultiChoice multi = new MultiChoice();
-        ArrayList<Character> answers = multi.loadAnswer("./folder/multichoice_questions.txt");
+        ArrayList<Character> answers = new ArrayList<>();
 
         //checks if the user input is equal to the answer
         if (answers.get(index) == input) { //if correct
@@ -30,7 +30,7 @@ public class CheckAnswer {
 
     public void checkTrueOrFalseAnswer(int index, char input) {  //checks answers for true or false questions
         TrueOrFalse truefalse = new TrueOrFalse();
-        ArrayList<Character> answers = truefalse.loadAnswer("./folder/true_or_false_questions.txt");
+        ArrayList<Character> answers = new ArrayList<>();
 
         //checks if the user input is equal to the answer
         if (answers.get(index) == input) {

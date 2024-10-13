@@ -17,34 +17,41 @@ import java.util.logging.Logger;
  * @author zwty2
  */
 public class Model {
-
-    Database database = new Database();
     UserInfo user = new UserInfo();
+    Database database = new Database();
 
     public Model() {
         database.dbsetup();
     }
-    
-    public void setUsername(String username){
+
+    public void setUsername(String username) {
         user.setUsername(username);
     }
-    
-    public boolean checkUsername() {  //checks if the user exists in the database
+
+    public boolean checkUsername() {
         boolean userCheck = false;
 
         try {
+            // Directly check for user existence
             Statement statement = database.conn.createStatement();
             ResultSet rs = statement.executeQuery("SELECT userid, score FROM UserInfo "
                     + "WHERE userid = '" + user.getUsername() + "'");
+
             if (rs.next()) {
-                System.out.println("found user");
+                System.out.println("Found user: " + user.getUsername());
                 userCheck = true;
             } else {
-                System.out.println("no such user");
+                System.out.println("No such user, inserting new user: " + user.getUsername());
                 statement.executeUpdate("INSERT INTO UserInfo "
                         + "VALUES('" + user.getUsername() + "', 0)");
                 userCheck = true;
             }
+
+            if (rs != null) {
+                rs.close();
+            }
+            statement.close();
+
         } catch (SQLException ex) {
             Logger.getLogger(UserInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -64,5 +71,4 @@ public class Model {
         }
     }
 
-    
 }
