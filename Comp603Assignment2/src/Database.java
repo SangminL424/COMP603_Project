@@ -37,8 +37,10 @@ public class Database {
 
             String questions = "questions";
             if (!dropTableIfExists(questions)) {
-                statement.executeUpdate("CREATE TABLE " + questions + " (id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, question_text VARCHAR(12) NOT NULL, answer CHAR, question_options VARCHAR(255) NOT NULL, question_type VARCHAR(50))");
+                statement.executeUpdate("CREATE TABLE " + questions + " (id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, question_text VARCHAR(500) NOT NULL, answer CHAR, question_options VARCHAR(500) NOT NULL, question_type VARCHAR(100))");
                 System.out.println("Created table " + questions);
+                
+                insertQuestions();
             }
 
             statement.close();
@@ -123,12 +125,11 @@ public class Database {
     public void insertQuestions() {  //insert questions into the database
         String multichoice = "Multi-Choice";
         String trueorfalse = "True or False";
-        String trueorfalseoptions = "True or False?";
 
         insertQuestion("What is the capital city of France?", 'C', "(A)Madrid (B)Berlin (C)Paris (D)Rome", multichoice);
         insertQuestion("Which planet is known as the Red Planet?", 'B', "(A)Earth (B)Mars (C)Venus (D)Jupiter", multichoice);
         insertQuestion("What is the largest mammal in the world?", 'A', "(A)Blue Whale (B)African Elephant (C)Great White Shark (D)Giraffe", multichoice);
-        insertQuestion("Which element has the chemical symbol 'O'?", 'A', "(A)Oxygen (B)Gold (C)Iron (D)Silver", "Multi-Choice");
+        insertQuestion("Which element has the chemical symbol ''O''?", 'A', "(A)Oxygen (B)Gold (C)Iron (D)Silver", "Multi-Choice");
         insertQuestion("Who wrote the play \"Romeo and Juliet\"?", 'B', "(A)Charles Dickens (B)William Shakespeare (C)Mark Twain (D)Jane Austen", multichoice);
         insertQuestion("What is the primary language spoken in Brazil?", 'C', "(A)Spanish (B)French (C)Portuguese (D)English", multichoice);
         insertQuestion("What is the chemical formula for water?", 'B', "(a)CO2 (b)H2O (c)NaCl (d)O2", multichoice);
@@ -136,16 +137,16 @@ public class Database {
         insertQuestion("Which programming language is primarily used for Android app development?", 'C', "(A)Python (B)Swift (C)Java (D)Ruby", multichoice);
         insertQuestion("Which organ in the human body is responsible for pumping blood?", 'D', "(A)Brain (B)Lungs (C)Liver (D)Heart", multichoice);
 
-        insertQuestion("The star sign aquarius is represented by a tiger.", 'F', trueorfalseoptions, trueorfalse);
-        insertQuestion("'A' is the most common letter used in the English language.", 'F', trueorfalseoptions, trueorfalse);
-        insertQuestion("ASOS stands for as seen on screen.", 'T', trueorfalseoptions, trueorfalse);
-        insertQuestion("H&M stands for Hennes & Mauritz.", 'T', trueorfalseoptions, trueorfalse);
-        insertQuestion("K is worth four points in scrabble.", 'T', trueorfalseoptions, trueorfalse);
-        insertQuestion("In the original deck of cards, the king has a moustache.", 'F', trueorfalseoptions, trueorfalse);
-        insertQuestion("When the two numbers on opposite sides of a dice are added together it always equals 7.", 'T', trueorfalseoptions, trueorfalse);
-        insertQuestion("In the English language there is no word that rhymes with orange.", 'T', trueorfalseoptions, trueorfalse);
-        insertQuestion("English is the most spoken language in the world.", 'F', trueorfalseoptions, trueorfalse);
-        insertQuestion("The Unicorn is the national animal of Scotland.", 'T', trueorfalseoptions, trueorfalse);
+        insertQuestion("The star sign aquarius is represented by a tiger.", 'F', "True or False?", trueorfalse);
+        insertQuestion("''A'' is the most common letter used in the English language.", 'F', "True or False?", trueorfalse);
+        insertQuestion("ASOS stands for as seen on screen.", 'T', "True or False?", trueorfalse);
+        insertQuestion("H&M stands for Hennes & Mauritz.", 'T', "True or False?", trueorfalse);
+        insertQuestion("K is worth four points in scrabble.", 'T', "True or False?", trueorfalse);
+        insertQuestion("In the original deck of cards, the king has a moustache.", 'F', "True or False?", trueorfalse);
+        insertQuestion("When the two numbers on opposite sides of a dice are added together it always equals 7.", 'T', "True or False?", trueorfalse);
+        insertQuestion("In the English language there is no word that rhymes with orange.", 'T', "True or False?", trueorfalse);
+        insertQuestion("English is the most spoken language in the world.", 'F', "True or False?", trueorfalse);
+        insertQuestion("The Unicorn is the national animal of Scotland.", 'T', "True or False?", trueorfalse);
 
     }
 }
