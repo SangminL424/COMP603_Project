@@ -30,17 +30,19 @@ public class Database {
             conn = DriverManager.getConnection(url, dbusername, dbpassword);
             Statement statement = conn.createStatement();
             String userInfo = "UserInfo";
-            if (!checkTableExisting(userInfo)) {
-                statement.executeUpdate("CREATE TABLE " + userInfo + " (userid VARCHAR(12), score INT)");
+            if (!checkTableExisting(userInfo)) {  //if the table doesn't exist
+                statement.executeUpdate("CREATE TABLE " + userInfo + " (userid VARCHAR(12), score INT)");  //creates new userinfo table with userid and score
                 System.out.println("Created table " + userInfo);
             }
 
             String questions = "questions";
-            if (!dropTableIfExists(questions)) {
-                statement.executeUpdate("CREATE TABLE " + questions + " (id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, question_text VARCHAR(500) NOT NULL, answer CHAR, question_options VARCHAR(500) NOT NULL, question_type VARCHAR(100))");
+            if (!dropTableIfExists(questions)) {  //if a question table already exists it drops it
+                statement.executeUpdate("CREATE TABLE " + questions + " (id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,"
+                        + " question_text VARCHAR(500) NOT NULL, answer CHAR,"
+                        + " question_options VARCHAR(500) NOT NULL, question_type VARCHAR(100))");  //create new question table with id, question text, answer and question type
                 System.out.println("Created table " + questions);
                 
-                insertQuestions();
+                insertQuestions();  //insert questions into the database
             }
 
             statement.close();
