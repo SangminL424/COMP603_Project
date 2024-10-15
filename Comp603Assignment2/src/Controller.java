@@ -5,33 +5,35 @@ import java.util.Random;
 
 public class Controller {
 
-    View view = new View();
-    Model model = new Model();
+    View view;
+    Model model;
 
     public Controller(View view, Model model) {
         this.view = view;
         this.model = model;
-
+        
+        
         view.startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("You clicked the start button");
                 model.setUsername(view.inputUsername.getText());
-                if(model.checkUsername()){
+                if (model.checkUsername()) {
                     startQuiz();
                 }
             }
         });
     }
 
-    public void startQuiz(){
+    public void startQuiz() {
         Random rand = new Random();
-        
+
         int quizType = rand.nextInt(2);
-        
-        switch (quizType) {
+        /*
+            switch (quizType) {
             case 0:
                 System.out.println("Multi Choice Question");
+                
                 view.multiChoiceScreen();
                 multiChoice();
                 break;
@@ -44,10 +46,16 @@ public class Controller {
                 System.out.println("no");
                 break;
         }
+        */
+        
+        System.out.println("Multi Choice Question");
+        
+        view.multiChoiceScreen();
+        multiChoice();
+        
     }
     
     public void multiChoice() {
-        
         removeListeners(view.optionA);
         view.optionA.addActionListener(new ActionListener() {
             @Override

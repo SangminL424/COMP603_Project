@@ -19,9 +19,13 @@ import java.util.logging.Logger;
 public class Model {
     UserInfo user = new UserInfo();
     Database database = new Database();
+    MultiChoice multi = new MultiChoice(database);
+    TrueOrFalse truefalse = new TrueOrFalse(database);
 
-    public Model() {
+    Model() {
         database.dbsetup();
+        multi.loadQuestions();  //loads questions, answers and options to arraylists and are stored inside the MultiChoice class
+        truefalse.loadQuestions();  //loads questions, answers and options to arraylists and are stored inside the TrueOrFalse class
     }
 
     public void setUsername(String username) {

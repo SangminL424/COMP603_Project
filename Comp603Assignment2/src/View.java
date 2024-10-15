@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class View extends JFrame {
-
+    
     JPanel startPanel = new JPanel();
     JPanel nameInputPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
@@ -99,7 +99,7 @@ public class View extends JFrame {
         questionPanel.removeAll();
         buttonPanel.removeAll();
         userPanel.removeAll();
-
+        
         questionPanel.add(question);
 
         buttonPanel.add(optionA);

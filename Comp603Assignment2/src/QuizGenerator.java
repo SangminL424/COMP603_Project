@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-
 import java.util.Scanner;
 
 /**
@@ -12,18 +11,14 @@ import java.util.Scanner;
  */
 public class QuizGenerator {
 
-    MultiChoice multi = new MultiChoice();
-    TrueOrFalse truefalse = new TrueOrFalse();
-    CheckAnswer checkAnswer = new CheckAnswer();
     Scanner scan = new Scanner(System.in);
 
     public void handleTypes(int type, int rounds) {  //prints different questions depending on the type
         if (type == 0) {  //if the type is 0
-            
-              //prints the options for the multichoice question
 
+            //prints the options for the multichoice question
             char input = scan.nextLine().charAt(0);
-            
+
             //checks for valid answers
             while (input != 'a' && input != 'b' && input != 'c' && input != 'd') {  //if the input is not a b c or d it will keep asking the user to input correctly
                 System.out.println("Invalid Input");
@@ -31,11 +26,9 @@ public class QuizGenerator {
                 input = scan.nextLine().charAt(0);
             }
 
-            checkAnswer.checkMultiChoiceAnswer(rounds, input);  //checks the multichoice answer
+            
         }
         if (type == 1) {
-            
-            truefalse.printQuestion(rounds);
             char input = scan.nextLine().charAt(0);
 
             //checks for valid answers
@@ -45,7 +38,7 @@ public class QuizGenerator {
                 input = scan.nextLine().charAt(0);
             }
 
-            checkAnswer.checkTrueOrFalseAnswer(rounds, input);  //checks the true or false answer
+            
         }
     }
 }
