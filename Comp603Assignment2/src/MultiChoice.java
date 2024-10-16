@@ -54,18 +54,6 @@ public class MultiChoice extends Questions {
         }
     }
 
-    public String getQuestionById(int id) {
-        return getQuestions().get(id);
-    }
-
-    public String getOptionById(int id) {
-        return getOptions().get(id);
-    }
-
-    public char getAnswerById(int id) {
-        return getAnswers().get(id);
-    }
-
     /**
      * @return the ids
      */

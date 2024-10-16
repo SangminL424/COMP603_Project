@@ -4,15 +4,14 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class Controller {
-
+    
     View view;
     Model model;
 
     public Controller(View view, Model model) {
         this.view = view;
         this.model = model;
-        
-        
+
         view.startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -27,34 +26,30 @@ public class Controller {
 
     public void startQuiz() {
         Random rand = new Random();
-
         int quizType = rand.nextInt(2);
-        /*
+
             switch (quizType) {
-            case 0:
-                System.out.println("Multi Choice Question");
-                
-                view.multiChoiceScreen();
-                multiChoice();
-                break;
-            case 1:
-                System.out.println("True or False Question");
-                view.trueOrFalseScreen();
-                trueOrFalse();
-                break;
-            default:
-                System.out.println("no");
-                break;
-        }
-        */
-        
-        System.out.println("Multi Choice Question");
-        
-        view.multiChoiceScreen();
-        multiChoice();
+                case 0:
+                    System.out.println("Multi Choice Question");
+                    view.multiquestion.setText(model.getMultiQuestionById(0));
+                    view.multioptions.setText(model.getMultiOptionsById(0));
+                    view.multiChoiceScreen();
+                    multiChoice();
+                    break;
+                case 1:
+                    System.out.println("True or False Question");
+                    view.truefalsequestion.setText(model.getTrueFalseQuestionById(0));
+                    view.truefalseoptions.setText(model.getTrueFalseOptionsById(0));
+                    view.trueOrFalseScreen();
+                    trueOrFalse();
+                    break;
+                default:
+                    System.out.println("no");
+                    break;
+            }
         
     }
-    
+
     public void multiChoice() {
         removeListeners(view.optionA);
         view.optionA.addActionListener(new ActionListener() {
@@ -96,7 +91,7 @@ public class Controller {
             }
         });
     }
-    
+
     public void trueOrFalse() {
         removeListeners(view.trueButton);
         view.trueButton.addActionListener(new ActionListener() {
@@ -105,7 +100,7 @@ public class Controller {
                 System.out.println("You clicked option True");
             }
         });
-        
+
         removeListeners(view.falseButton);
         view.falseButton.addActionListener(new ActionListener() {
             @Override
@@ -113,7 +108,7 @@ public class Controller {
                 System.out.println("You clicked option False");
             }
         });
-        
+
         removeListeners(view.quitButton);
         view.quitButton.addActionListener(new ActionListener() {
             @Override
@@ -126,7 +121,7 @@ public class Controller {
 
     public void quitGame() {
         System.out.println("You clicked the quit button");
-        
+
         view.quitScreen();
 
         removeListeners(view.resetButton);

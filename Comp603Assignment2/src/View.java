@@ -19,12 +19,16 @@ public class View extends JFrame {
     JPanel nameInputPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
     JPanel questionPanel = new JPanel();
+    JPanel optionsPanel = new JPanel();
     JPanel userPanel = new JPanel();
     JPanel loserPanel = new JPanel();
     JPanel quitPanel = new JPanel();
 
     JLabel titleLabel = new JLabel("Who wants to be a millionaire?");
-    JLabel question = new JLabel("Question");
+    JLabel multiquestion = new JLabel("Question");
+    JLabel truefalsequestion = new JLabel("Question");
+    JLabel multioptions = new JLabel("Options");
+    JLabel truefalseoptions = new JLabel("Options");
     JLabel loserMessage = new JLabel("You lose");
     JLabel quitMessage = new JLabel("You quit");
 
@@ -42,7 +46,6 @@ public class View extends JFrame {
     JButton falseButton = new JButton("False");
 
     JButton quitButton = new JButton("quit game");
-    JButton answerButton = new JButton("answer");
 
     JButton resetButton = new JButton("Restart");
 
@@ -94,29 +97,40 @@ public class View extends JFrame {
     }
 
     public void multiChoiceScreen() {
-        this.setLayout(new GridLayout(3, 1));
+        this.setLayout(new GridLayout(4, 1));
 
         questionPanel.removeAll();
+        optionsPanel.removeAll();
         buttonPanel.removeAll();
         userPanel.removeAll();
         
-        questionPanel.add(question);
+        multiquestion.setFont(new Font("Dialog", Font.BOLD, 20));
+        questionPanel.add(multiquestion);
+        
+        multioptions.setFont(new Font("Dialog", Font.BOLD, 25));
+        optionsPanel.add(multioptions);
 
+        optionA.setFont(new Font("Dialog", Font.BOLD, 20));
+        optionB.setFont(new Font("Dialog", Font.BOLD, 20));
+        optionC.setFont(new Font("Dialog", Font.BOLD, 20));
+        optionD.setFont(new Font("Dialog", Font.BOLD, 20));
+        
         buttonPanel.add(optionA);
         buttonPanel.add(optionB);
         buttonPanel.add(optionC);
         buttonPanel.add(optionD);
 
         buttonPanel.setLayout(new GridLayout(2, 2));
-
-        userPanel.add(answerButton);
+        
         userPanel.add(quitButton);
 
         this.getContentPane().removeAll();
         questionPanel.setVisible(true);
+        optionsPanel.setVisible(true);
         buttonPanel.setVisible(true);
         userPanel.setVisible(true);
         this.add(questionPanel);
+        this.add(optionsPanel);
         this.add(buttonPanel);
         this.add(userPanel);
         this.revalidate();
@@ -124,26 +138,36 @@ public class View extends JFrame {
     }
 
     public void trueOrFalseScreen() {
-        this.setLayout(new GridLayout(3, 1));
+        this.setLayout(new GridLayout(4, 1));
 
+        optionsPanel.removeAll();
         questionPanel.removeAll();
         buttonPanel.removeAll();
         userPanel.removeAll();
 
-        questionPanel.add(question);
+        
+        truefalseoptions.setFont(new Font("Dialog", Font.BOLD, 20));
+        optionsPanel.add(truefalseoptions);
+        
+        truefalsequestion.setFont(new Font("Dialog", Font.BOLD, 25));
+        questionPanel.add(truefalsequestion);
 
+        trueButton.setFont(new Font("Dialog", Font.BOLD, 20));
+        falseButton.setFont(new Font("Dialog", Font.BOLD, 20));
+        
         buttonPanel.add(trueButton);
         buttonPanel.add(falseButton);
 
         buttonPanel.setLayout(new GridLayout(1, 2));
-
-        userPanel.add(answerButton);
+        
         userPanel.add(quitButton);
 
         this.getContentPane().removeAll();
+        optionsPanel.setVisible(true);
         questionPanel.setVisible(true);
         buttonPanel.setVisible(true);
         userPanel.setVisible(true);
+        this.add(optionsPanel);
         this.add(questionPanel);
         this.add(buttonPanel);
         this.add(userPanel);

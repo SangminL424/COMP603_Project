@@ -17,6 +17,7 @@ import java.util.logging.Logger;
  * @author zwty2
  */
 public class Model {
+
     UserInfo user = new UserInfo();
     Database database = new Database();
     MultiChoice multi = new MultiChoice(database);
@@ -24,19 +25,15 @@ public class Model {
 
     Model() {
         database.dbsetup();
-        multi.loadQuestions();  //loads questions, answers and options to arraylists and are stored inside the MultiChoice class
-        truefalse.loadQuestions();  //loads questions, answers and options to arraylists and are stored inside the TrueOrFalse class
-    }
-
-    public void setUsername(String username) {
-        user.setUsername(username);
+        multi.loadQuestions();
+        truefalse.loadQuestions();
     }
 
     public boolean checkUsername() {
         boolean userCheck = false;
 
         try {
-            // Directly check for user existence
+            //check if user exists directly from the database
             Statement statement = database.conn.createStatement();
             ResultSet rs = statement.executeQuery("SELECT userid, score FROM UserInfo "
                     + "WHERE userid = '" + user.getUsername() + "'");
@@ -63,6 +60,10 @@ public class Model {
         return userCheck;
     }
 
+    public void setUsername(String username) {
+        user.setUsername(username);
+    }
+    
     public void quitGame() {
 
         Statement statement;
@@ -75,4 +76,32 @@ public class Model {
         }
     }
 
+    
+
+    public String getMultiQuestionById(int id) {
+        return multi.getQuestions().get(id);
+    }
+
+    public String getMultiOptionsById(int id) {
+        return multi.getOptions().get(id);
+    }
+
+    public char getMultiAnswerById(int id) {
+        return multi.getAnswers().get(id);
+    }
+
+    
+    
+    
+    public String getTrueFalseQuestionById(int id) {
+        return truefalse.getQuestions().get(id);
+    }
+
+    public String getTrueFalseOptionsById(int id) {
+        return truefalse.getOptions().get(id);
+    }
+
+    public char getTrueFalseAnswerById(int id) {
+        return truefalse.getAnswers().get(id);
+    }
 }
