@@ -18,28 +18,35 @@ public class Controller {
                 System.out.println("You clicked the start button");
                 model.setUsername(view.inputUsername.getText());
                 if (model.checkUsername()) {
-                    startQuiz();
+                    nextQuestion();
                 }
             }
         });
     }
 
-    public void startQuiz() {
-        Random rand = new Random();
-        int quizType = rand.nextInt(2);
-
-            switch (quizType) {
+    
+    Random rand = new Random();
+        int questionType = 0;
+        int max_rounds = 10;
+        int current_round = 0;
+    
+    public void nextQuestion() {
+        
+        if(current_round < max_rounds){
+            questionType = rand.nextInt(2);
+            
+            switch (questionType) {
                 case 0:
                     System.out.println("Multi Choice Question");
-                    view.multiquestion.setText(model.getMultiQuestionById(0));
-                    view.multioptions.setText(model.getMultiOptionsById(0));
+                    view.multiquestion.setText(model.getMultiQuestionById(current_round));
+                    view.multioptions.setText(model.getMultiOptionsById(current_round));
                     view.multiChoiceScreen();
                     multiChoice();
                     break;
                 case 1:
                     System.out.println("True or False Question");
-                    view.truefalsequestion.setText(model.getTrueFalseQuestionById(0));
-                    view.truefalseoptions.setText(model.getTrueFalseOptionsById(0));
+                    view.truefalsequestion.setText(model.getTrueFalseQuestionById(current_round));
+                    view.truefalseoptions.setText(model.getTrueFalseOptionsById(current_round));
                     view.trueOrFalseScreen();
                     trueOrFalse();
                     break;
@@ -47,15 +54,29 @@ public class Controller {
                     System.out.println("no");
                     break;
             }
+        }
         
+        if(current_round == 10){
+                System.out.println("You win");
+        }
     }
 
+    char userGuess;
+    
     public void multiChoice() {
         removeListeners(view.optionA);
         view.optionA.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("You clicked option A");
+                userGuess = 'A';
+                if(model.checkAnswer(current_round, userGuess)){
+                    current_round++;
+                    nextQuestion();
+                } else {
+                    model.wrongAnswer();
+                    System.out.println("wrong");
+                }
             }
         });
 
@@ -64,6 +85,14 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("You clicked option B");
+                userGuess = 'B';
+                if(model.checkAnswer(current_round, userGuess)){
+                    current_round++;
+                    nextQuestion();
+                } else {
+                    model.wrongAnswer();
+                    System.out.println("wrong");
+                }
             }
         });
 
@@ -72,6 +101,14 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("You clicked option C");
+                userGuess = 'C';
+                if(model.checkAnswer(current_round, userGuess)){
+                    current_round++;
+                    nextQuestion();
+                } else {
+                    model.wrongAnswer();
+                    System.out.println("wrong");
+                }
             }
         });
 
@@ -80,6 +117,14 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("You clicked option D");
+                userGuess = 'D';
+                if(model.checkAnswer(current_round, userGuess)){
+                    current_round++;
+                    nextQuestion();
+                } else {
+                    model.wrongAnswer();
+                    System.out.println("wrong");
+                }
             }
         });
 
@@ -98,6 +143,14 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("You clicked option True");
+                userGuess = 'T';
+                if(model.checkAnswer(current_round, userGuess)){
+                    current_round++;
+                    nextQuestion();
+                } else {
+                    model.wrongAnswer();
+                    System.out.println("wrong");
+                }
             }
         });
 
@@ -106,6 +159,14 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("You clicked option False");
+                userGuess = 'F';
+                if(model.checkAnswer(current_round, userGuess)){
+                    current_round++;
+                    nextQuestion();
+                } else {
+                    model.wrongAnswer();
+                    System.out.println("wrong");
+                }
             }
         });
 

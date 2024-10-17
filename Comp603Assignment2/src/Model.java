@@ -1,7 +1,4 @@
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -89,9 +86,6 @@ public class Model {
     public char getMultiAnswerById(int id) {
         return multi.getAnswers().get(id);
     }
-
-    
-    
     
     public String getTrueFalseQuestionById(int id) {
         return truefalse.getQuestions().get(id);
@@ -103,5 +97,35 @@ public class Model {
 
     public char getTrueFalseAnswerById(int id) {
         return truefalse.getAnswers().get(id);
+    }
+    
+    
+    public boolean checkAnswer(int id, char userGuess){
+        boolean isCorrect = false;
+        
+        if(userGuess == getMultiAnswerById(id)){
+            isCorrect = true;
+            user.earningsPerRound(id);
+            System.out.println(user.getScore());
+        }
+        if(userGuess == getTrueFalseAnswerById(id)){
+            isCorrect = true;
+            user.earningsPerRound(id);
+            System.out.println(user.getScore());
+        }
+        
+        return isCorrect;
+    }
+    
+    public void wrongAnswer(){ //if the user gets the question wrong it will set their score to 0
+        
+        Statement statement;
+        try {
+            statement = database.conn.createStatement();
+            statement.executeUpdate("UPDATE UserInfo SET score=0 WHERE userid='" + user.getUsername() + "'");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

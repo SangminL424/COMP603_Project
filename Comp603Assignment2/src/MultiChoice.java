@@ -16,8 +16,7 @@ import java.util.logging.Logger;
  * @author zwty2
  */
 public class MultiChoice extends Questions {
-
-    private ArrayList<Integer> ids = new ArrayList<>();
+    
     private ArrayList<String> questions = new ArrayList<>();
     private ArrayList<Character> answers = new ArrayList<>();
     private ArrayList<String> options = new ArrayList<>();
@@ -31,13 +30,12 @@ public class MultiChoice extends Questions {
         {
             try {
                 Connection conn = database.conn;
-                String query = "SELECT id, question_text, answer, question_options FROM multichoicequestions";
+                String query = "SELECT question_text, answer, question_options FROM multichoicequestions";
 
                 PreparedStatement preparedStatement = conn.prepareStatement(query);
                 ResultSet rs = preparedStatement.executeQuery();
 
                 while (rs.next()) {
-                        getIds().add(rs.getInt("id"));
                         getQuestions().add(rs.getString("question_text"));
                         getAnswers().add(rs.getString("answer").charAt(0));
                         getOptions().add(rs.getString("question_options"));
@@ -54,13 +52,7 @@ public class MultiChoice extends Questions {
         }
     }
 
-    /**
-     * @return the ids
-     */
-    public ArrayList<Integer> getIds() {
-        return ids;
-    }
-
+ 
     /**
      * @return the questions
      */
