@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class Controller {
-    
+
     View view;
     Model model;
 
@@ -24,17 +24,15 @@ public class Controller {
         });
     }
 
-    
     Random rand = new Random();
-        int questionType = 0;
-        int max_rounds = 10;
-        int current_round = 0;
-    
+    int questionType = 0;
+    int max_rounds = 10;
+    int current_round = 0;
+
     public void nextQuestion() {
-        
-        if(current_round < max_rounds){
+        if (current_round < max_rounds) {
             questionType = rand.nextInt(2);
-            
+
             switch (questionType) {
                 case 0:
                     System.out.println("Multi Choice Question");
@@ -55,27 +53,32 @@ public class Controller {
                     break;
             }
         }
-        
-        if(current_round == 10){
-                System.out.println("You win");
+
+        if (current_round == 10) {
+            System.out.println("You win");
         }
     }
 
     char userGuess;
-    
+
     public void multiChoice() {
+        updateCurrentEarnings();
+        
         removeListeners(view.optionA);
         view.optionA.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("You clicked option A");
                 userGuess = 'A';
-                if(model.checkAnswer(current_round, userGuess)){
+                if (model.checkAnswer(current_round, userGuess)) {
                     current_round++;
                     nextQuestion();
+                    updateCurrentEarnings();
                 } else {
                     model.wrongAnswer();
                     System.out.println("wrong");
+                    view.loserScreen();
+                    loseGame();
                 }
             }
         });
@@ -86,12 +89,15 @@ public class Controller {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("You clicked option B");
                 userGuess = 'B';
-                if(model.checkAnswer(current_round, userGuess)){
+                if (model.checkAnswer(current_round, userGuess)) {
                     current_round++;
                     nextQuestion();
+                    updateCurrentEarnings();
                 } else {
                     model.wrongAnswer();
                     System.out.println("wrong");
+                    view.loserScreen();
+                    loseGame();
                 }
             }
         });
@@ -102,12 +108,15 @@ public class Controller {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("You clicked option C");
                 userGuess = 'C';
-                if(model.checkAnswer(current_round, userGuess)){
+                if (model.checkAnswer(current_round, userGuess)) {
                     current_round++;
                     nextQuestion();
+                    updateCurrentEarnings();
                 } else {
                     model.wrongAnswer();
                     System.out.println("wrong");
+                    view.loserScreen();
+                    loseGame();
                 }
             }
         });
@@ -118,12 +127,15 @@ public class Controller {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("You clicked option D");
                 userGuess = 'D';
-                if(model.checkAnswer(current_round, userGuess)){
+                if (model.checkAnswer(current_round, userGuess)) {
                     current_round++;
                     nextQuestion();
+                    updateCurrentEarnings();
                 } else {
                     model.wrongAnswer();
                     System.out.println("wrong");
+                    view.loserScreen();
+                    loseGame();
                 }
             }
         });
@@ -138,18 +150,23 @@ public class Controller {
     }
 
     public void trueOrFalse() {
+        updateCurrentEarnings();
+        
         removeListeners(view.trueButton);
         view.trueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("You clicked option True");
                 userGuess = 'T';
-                if(model.checkAnswer(current_round, userGuess)){
+                if (model.checkAnswer(current_round, userGuess)) {
                     current_round++;
                     nextQuestion();
+                    updateCurrentEarnings();
                 } else {
                     model.wrongAnswer();
                     System.out.println("wrong");
+                    view.loserScreen();
+                    loseGame();
                 }
             }
         });
@@ -160,12 +177,15 @@ public class Controller {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("You clicked option False");
                 userGuess = 'F';
-                if(model.checkAnswer(current_round, userGuess)){
+                if (model.checkAnswer(current_round, userGuess)) {
                     current_round++;
                     nextQuestion();
+                    updateCurrentEarnings();
                 } else {
                     model.wrongAnswer();
                     System.out.println("wrong");
+                    view.loserScreen();
+                    loseGame();
                 }
             }
         });
@@ -190,8 +210,37 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 view.resetPanel();
+                resetGame();
+                updateCurrentEarnings();
             }
         });
+    }
+
+    public void loseGame() {
+        System.out.println("You Lose");
+        
+        view.loserScreen();
+
+        removeListeners(view.resetButton);
+        view.resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.resetPanel();
+                resetGame();
+                updateCurrentEarnings();
+            }
+        });
+    }
+
+    public void resetGame() {
+        current_round = 0;
+        view.resetPanel();
+        model.setCurrentEarnings(0);
+        updateCurrentEarnings();
+    }
+
+    public void updateCurrentEarnings() {
+        view.currentEarnings.setText("Current Earnings: " + String.valueOf(model.getCurrentEarnings(current_round)));
     }
 
     //prevents the buttons from being activated more than once

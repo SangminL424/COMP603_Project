@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class View extends JFrame {
-    
+
     JPanel startPanel = new JPanel();
     JPanel nameInputPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
@@ -23,6 +23,7 @@ public class View extends JFrame {
     JPanel userPanel = new JPanel();
     JPanel loserPanel = new JPanel();
     JPanel quitPanel = new JPanel();
+    JPanel winnerPanel = new JPanel();
 
     JLabel titleLabel = new JLabel("Who wants to be a millionaire?");
     JLabel multiquestion = new JLabel("Question");
@@ -31,29 +32,29 @@ public class View extends JFrame {
     JLabel truefalseoptions = new JLabel("Options");
     JLabel loserMessage = new JLabel("You lose");
     JLabel quitMessage = new JLabel("You quit");
+    JLabel currentEarnings = new JLabel("Current Earnings");
 
     JLabel userName = new JLabel("Username: ");
     JTextField inputUsername = new JTextField(10);
 
     JButton startButton = new JButton("Click button to start the quiz");
-
     JButton optionA = new JButton("A");
     JButton optionB = new JButton("B");
     JButton optionC = new JButton("C");
     JButton optionD = new JButton("D");
-
     JButton trueButton = new JButton("True");
     JButton falseButton = new JButton("False");
-
     JButton quitButton = new JButton("quit game");
-
     JButton resetButton = new JButton("Restart");
 
     public View() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(800, 400);
-        this.setLocationRelativeTo(null);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
+        startScreen();
+    }
+
+    public void startScreen() {
         startPanel.setLayout(new BorderLayout());
 
         titleLabel.setFont(new Font("SansSerif", Font.PLAIN, 50));
@@ -92,8 +93,12 @@ public class View extends JFrame {
         gbc.gridy = 2;
         startPanel.add(titleLabel, BorderLayout.NORTH);
         startPanel.add(nameInputPanel, BorderLayout.CENTER);
-
+        
+        this.getContentPane().removeAll();
+        this.startPanel.setVisible(true);
         this.add(startPanel);
+        this.revalidate();
+        this.repaint();
     }
 
     public void multiChoiceScreen() {
@@ -103,10 +108,10 @@ public class View extends JFrame {
         optionsPanel.removeAll();
         buttonPanel.removeAll();
         userPanel.removeAll();
-        
+
         multiquestion.setFont(new Font("Dialog", Font.BOLD, 20));
         questionPanel.add(multiquestion);
-        
+
         multioptions.setFont(new Font("Dialog", Font.BOLD, 25));
         optionsPanel.add(multioptions);
 
@@ -114,14 +119,15 @@ public class View extends JFrame {
         optionB.setFont(new Font("Dialog", Font.BOLD, 20));
         optionC.setFont(new Font("Dialog", Font.BOLD, 20));
         optionD.setFont(new Font("Dialog", Font.BOLD, 20));
-        
+
         buttonPanel.add(optionA);
         buttonPanel.add(optionB);
         buttonPanel.add(optionC);
         buttonPanel.add(optionD);
 
         buttonPanel.setLayout(new GridLayout(2, 2));
-        
+
+        userPanel.add(currentEarnings);
         userPanel.add(quitButton);
 
         this.getContentPane().removeAll();
@@ -145,21 +151,21 @@ public class View extends JFrame {
         buttonPanel.removeAll();
         userPanel.removeAll();
 
-        
         truefalseoptions.setFont(new Font("Dialog", Font.BOLD, 20));
         optionsPanel.add(truefalseoptions);
-        
+
         truefalsequestion.setFont(new Font("Dialog", Font.BOLD, 25));
         questionPanel.add(truefalsequestion);
 
         trueButton.setFont(new Font("Dialog", Font.BOLD, 20));
         falseButton.setFont(new Font("Dialog", Font.BOLD, 20));
-        
+
         buttonPanel.add(trueButton);
         buttonPanel.add(falseButton);
 
         buttonPanel.setLayout(new GridLayout(1, 2));
-        
+
+        userPanel.add(currentEarnings);
         userPanel.add(quitButton);
 
         this.getContentPane().removeAll();
@@ -176,8 +182,15 @@ public class View extends JFrame {
     }
 
     public void loserScreen() {
-        loserPanel.setFont(new Font("SansSerif", Font.PLAIN, 60));
-        loserPanel.add(loserMessage);
+        loserPanel.setLayout(new BorderLayout());
+        
+        loserMessage.setFont(new Font("SansSerif", Font.PLAIN, 60));
+        resetButton.setFont(new Font("SansSerif", Font.PLAIN, 20));
+        
+        loserMessage.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        loserPanel.add(loserMessage, BorderLayout.NORTH);
+        loserPanel.add(resetButton, BorderLayout.SOUTH);
 
         this.getContentPane().removeAll();
         loserPanel.setVisible(true);
@@ -207,9 +220,9 @@ public class View extends JFrame {
     public void resetPanel() {
         System.out.println("Game has been reset");
         this.getContentPane().removeAll();
-        startPanel.setVisible(true);
-        this.add(startPanel);
+        startScreen();
         this.revalidate();
         this.repaint();
     }
+
 }

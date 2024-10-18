@@ -61,6 +61,8 @@ public class Model {
         user.setUsername(username);
     }
     
+    
+    
     public void quitGame() {
 
         Statement statement;
@@ -99,6 +101,14 @@ public class Model {
         return truefalse.getAnswers().get(id);
     }
     
+    public int getCurrentEarnings(int round){
+        return user.getScore();
+    }
+    
+    public void setCurrentEarnings(int earning){
+        user.setScore(earning);
+    }
+    
     
     public boolean checkAnswer(int id, char userGuess){
         boolean isCorrect = false;
@@ -128,4 +138,6 @@ public class Model {
             Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+   
 }

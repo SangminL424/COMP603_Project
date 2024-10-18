@@ -1,7 +1,7 @@
-Fri Oct 18 08:06:14 NZDT 2024 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
+Sat Oct 19 08:51:43 NZDT 2024 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Fri Oct 18 08:06:14 NZDT 2024:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0192-9bdf-8478-ffffa9bc416c 
+Sat Oct 19 08:51:43 NZDT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0192-a12f-8588-ffffa9bc416c 
 on database directory C:\Users\64224\Documents\NetBeansProjects\COMP603_Project\Comp603Assignment2\QuizGameDB with class loader sun.misc.Launcher$AppClassLoader@6474c2 
 Loaded from file:/C:/Users/64224/Downloads/db-derby-10.14.2.0-lib/db-derby-10.14.2.0-lib/lib/derby.jar
 java.vendor=Oracle Corporation
