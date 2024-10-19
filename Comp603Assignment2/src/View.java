@@ -35,7 +35,7 @@ public class View extends JFrame {
     JLabel currentEarnings = new JLabel("Current Earnings");
 
     JLabel userName = new JLabel("Username: ");
-    JTextField inputUsername = new JTextField(10);
+    JTextField usernameField = new JTextField(10);
 
     JButton startButton = new JButton("Click button to start the quiz");
     JButton optionA = new JButton("A");
@@ -55,6 +55,9 @@ public class View extends JFrame {
     }
 
     public void startScreen() {
+
+        startPanel.removeAll();
+
         startPanel.setLayout(new BorderLayout());
 
         titleLabel.setFont(new Font("SansSerif", Font.PLAIN, 50));
@@ -62,40 +65,37 @@ public class View extends JFrame {
 
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        inputUsername.setPreferredSize(new Dimension(150, 25));
+        usernameField.setPreferredSize(new Dimension(150, 25));
+
         nameInputPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-
-        gbc.anchor = GridBagConstraints.CENTER;
-
         gbc.insets = new Insets(10, 10, 10, 10);
 
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.EAST;
-        gbc.weightx = 0.0;
         nameInputPanel.add(userName, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.WEST;
-        gbc.weightx = 0.0;
-        nameInputPanel.add(inputUsername, gbc);
+        nameInputPanel.add(usernameField, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
         nameInputPanel.add(startButton, gbc);
 
-        gbc.gridx = 0;
-        gbc.gridy = 2;
+        JPanel wrapperPanel = new JPanel(new BorderLayout());
+        wrapperPanel.add(nameInputPanel, BorderLayout.NORTH);
+
         startPanel.add(titleLabel, BorderLayout.NORTH);
-        startPanel.add(nameInputPanel, BorderLayout.CENTER);
-        
+
+        startPanel.add(wrapperPanel, BorderLayout.CENTER);
+
         this.getContentPane().removeAll();
-        this.startPanel.setVisible(true);
+        startPanel.setVisible(true);
         this.add(startPanel);
         this.revalidate();
         this.repaint();
@@ -183,12 +183,12 @@ public class View extends JFrame {
 
     public void loserScreen() {
         loserPanel.setLayout(new BorderLayout());
-        
+
         loserMessage.setFont(new Font("SansSerif", Font.PLAIN, 60));
         resetButton.setFont(new Font("SansSerif", Font.PLAIN, 20));
-        
+
         loserMessage.setHorizontalAlignment(SwingConstants.CENTER);
-        
+
         loserPanel.add(loserMessage, BorderLayout.NORTH);
         loserPanel.add(resetButton, BorderLayout.SOUTH);
 
@@ -221,8 +221,8 @@ public class View extends JFrame {
         System.out.println("Game has been reset");
         this.getContentPane().removeAll();
         startScreen();
+
         this.revalidate();
         this.repaint();
     }
-
 }

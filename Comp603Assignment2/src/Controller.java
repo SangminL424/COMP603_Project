@@ -16,7 +16,7 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("You clicked the start button");
-                model.setUsername(view.inputUsername.getText());
+                model.setUsername(view.usernameField.getText());
                 if (model.checkUsername()) {
                     nextQuestion();
                 }
