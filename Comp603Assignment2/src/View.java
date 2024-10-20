@@ -23,7 +23,7 @@ public class View extends JFrame {
     JPanel optionsPanel = new JPanel();
     JPanel userPanel = new JPanel();
     JPanel loserPanel = new JPanel();
-    JPanel quitPanel = new JPanel();
+    JPanel stopPanel = new JPanel();
     JPanel winnerPanel = new JPanel();
 
     JLabel titleLabel = new JLabel("Who wants to be a millionaire?");
@@ -32,28 +32,29 @@ public class View extends JFrame {
     JLabel multioptions = new JLabel("Options");
     JLabel truefalseoptions = new JLabel("Options");
     JLabel loserMessage = new JLabel("You lose");
-    JLabel quitMessage = new JLabel("You quit");
+    JLabel stopMessage = new JLabel("You quit");
     JLabel currentEarnings = new JLabel("Current Earnings");
     JLabel winnerMessage = new JLabel("Win");
 
     JLabel userName = new JLabel("Username: ");
     JTextField usernameField = new JTextField(10);
 
-    JButton startButton = new JButton("Click button to start the quiz");
+    JButton startButton = new JButton("Click this button to start the quiz");
     JButton optionA = new JButton("A");
     JButton optionB = new JButton("B");
     JButton optionC = new JButton("C");
     JButton optionD = new JButton("D");
     JButton trueButton = new JButton("True");
     JButton falseButton = new JButton("False");
-    JButton stopButton = new JButton("stop quiz");
-    JButton quitButton = new JButton("quit game");
+    JButton stopButton = new JButton("Stop quiz");
+    JButton quitButton = new JButton("Quit game");
     JButton resetButton = new JButton("Restart");
 
     public View() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
+        this.setSize(1200, 1000);
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
         startScreen();
     }
 
@@ -65,6 +66,7 @@ public class View extends JFrame {
 
         titleLabel.setFont(new Font("Dialog", Font.BOLD, 50));
         startButton.setFont(new Font("Dialog", Font.BOLD, 20));
+        quitButton.setFont(new Font("Dialog", Font.BOLD, 20));
 
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -89,6 +91,12 @@ public class View extends JFrame {
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         nameInputPanel.add(startButton, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+        nameInputPanel.add(quitButton, gbc);
 
         JPanel wrapperPanel = new JPanel(new BorderLayout());
         wrapperPanel.add(nameInputPanel, BorderLayout.NORTH);
@@ -211,29 +219,28 @@ public class View extends JFrame {
         this.repaint();
     }
 
-    public void quitScreen() {
-        quitPanel.removeAll();
+    public void stopScreen() {
+        stopPanel.removeAll();
         
-        quitPanel.setLayout(new BorderLayout());
+        stopPanel.setLayout(new BorderLayout());
 
-        quitMessage.setFont(new Font("Dialog", Font.BOLD, 50));
+        stopMessage.setFont(new Font("Dialog", Font.BOLD, 50));
         resetButton.setFont(new Font("Dialog", Font.BOLD, 20));
         quitButton.setFont(new Font("Dialog", Font.BOLD, 20));
 
-        quitMessage.setHorizontalAlignment(SwingConstants.CENTER);
-        quitMessage.setText("You Quit");
+        stopMessage.setHorizontalAlignment(SwingConstants.CENTER);
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
         buttonPanel.add(resetButton);
         buttonPanel.add(quitButton);
 
-        quitPanel.add(quitMessage, BorderLayout.CENTER);
-        quitPanel.add(buttonPanel, BorderLayout.SOUTH);
+        stopPanel.add(stopMessage, BorderLayout.CENTER);
+        stopPanel.add(buttonPanel, BorderLayout.SOUTH);
 
         this.getContentPane().removeAll();
-        quitPanel.setVisible(true);
-        this.add(quitPanel);
+        stopPanel.setVisible(true);
+        this.add(stopPanel);
         this.revalidate();
         this.repaint();
     }
@@ -248,7 +255,7 @@ public class View extends JFrame {
         quitButton.setFont(new Font("Dialog", Font.BOLD, 20));
 
         winnerMessage.setHorizontalAlignment(SwingConstants.CENTER);
-        winnerMessage.setText("You are now a Millionaire!!");
+        winnerMessage.setText("You Won a Million Dollars!!");
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));

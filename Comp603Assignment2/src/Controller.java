@@ -22,6 +22,15 @@ public class Controller {
                 }
             }
         });
+        
+        removeListeners(view.quitButton);
+        view.quitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("You quit the game");
+                System.exit(0);
+            }
+        });
     }
 
     Random rand = new Random();
@@ -77,7 +86,7 @@ public class Controller {
                     updateCurrentEarnings();
                 } else {
                     model.wrongAnswer();
-                    System.out.println("wrong");
+                    System.out.println("Wrong");
                     view.loserScreen();
                     loseGame();
                 }
@@ -96,7 +105,7 @@ public class Controller {
                     updateCurrentEarnings();
                 } else {
                     model.wrongAnswer();
-                    System.out.println("wrong");
+                    System.out.println("Wrong");
                     view.loserScreen();
                     loseGame();
                 }
@@ -115,7 +124,7 @@ public class Controller {
                     updateCurrentEarnings();
                 } else {
                     model.wrongAnswer();
-                    System.out.println("wrong");
+                    System.out.println("Wrong");
                     view.loserScreen();
                     loseGame();
                 }
@@ -134,7 +143,7 @@ public class Controller {
                     updateCurrentEarnings();
                 } else {
                     model.wrongAnswer();
-                    System.out.println("wrong");
+                    System.out.println("Wrong");
                     view.loserScreen();
                     loseGame();
                 }
@@ -165,7 +174,7 @@ public class Controller {
                     updateCurrentEarnings();
                 } else {
                     model.wrongAnswer();
-                    System.out.println("wrong");
+                    System.out.println("Wrong");
                     view.loserScreen();
                     loseGame();
                 }
@@ -184,7 +193,7 @@ public class Controller {
                     updateCurrentEarnings();
                 } else {
                     model.wrongAnswer();
-                    System.out.println("wrong");
+                    System.out.println("Wrong");
                     view.loserScreen();
                     loseGame();
                 }
@@ -195,6 +204,7 @@ public class Controller {
         view.stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                view.stopMessage.setText("You Won $" + model.getCurrentEarnings(current_round) + "!!");
                 model.stopQuiz();
                 stopQuiz();
             }
@@ -204,7 +214,7 @@ public class Controller {
     public void stopQuiz() {
         System.out.println("You clicked the quit button");
 
-        view.quitScreen();
+        view.stopScreen();
 
         removeListeners(view.resetButton);
         view.resetButton.addActionListener(new ActionListener() {

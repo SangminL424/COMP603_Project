@@ -1,7 +1,6 @@
 
 import org.apache.derby.drda.NetworkServerControl;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
