@@ -1,7 +1,7 @@
-Sun Oct 20 09:26:33 NZDT 2024 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
+Sun Oct 20 17:23:52 NZDT 2024 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Sun Oct 20 09:26:33 NZDT 2024:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0192-a675-c582-ffffa9bc416c 
+Sun Oct 20 17:23:56 NZDT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0192-a82a-c249-ffffa9bc416c 
 on database directory C:\Users\64224\Documents\NetBeansProjects\COMP603_Project\Comp603Assignment2\QuizGameDB with class loader sun.misc.Launcher$AppClassLoader@6474c2 
 Loaded from file:/C:/Users/64224/Downloads/db-derby-10.14.2.0-lib/db-derby-10.14.2.0-lib/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -12,9 +12,3 @@ os.arch=x86
 os.version=10.0
 derby.system.home=C:\Users\64224\Documents\NetBeansProjects\COMP603_Project\Comp603Assignment2
 Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Sun Oct 20 10:21:13 NZDT 2024: Shutting down Derby engine
-----------------------------------------------------------------
-Sun Oct 20 10:21:13 NZDT 2024:
-Shutting down instance a816c00e-0192-a675-c582-ffffa9bc416c on database directory C:\Users\64224\Documents\NetBeansProjects\COMP603_Project\Comp603Assignment2\QuizGameDB with class loader sun.misc.Launcher$AppClassLoader@6474c2 
-----------------------------------------------------------------

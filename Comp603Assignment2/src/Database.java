@@ -28,8 +28,10 @@ public class Database {
 
     public void dbsetup() {
         try {
-            conn = DriverManager.getConnection(url, dbusername, dbpassword);
+            conn = automaticDBConnection();
+
             Statement statement = conn.createStatement();
+
             String userInfo = "UserInfo";
             if (!checkTableExisting(userInfo)) {  //if the table doesn't exist
                 statement.executeUpdate("CREATE TABLE " + userInfo + " (userid VARCHAR(12), score INT)");  //creates new userinfo table with userid and score
@@ -61,7 +63,24 @@ public class Database {
         } catch (Throwable e) {
             System.out.println("error");
             e.printStackTrace();
+        } 
+    }
+
+    public Connection automaticDBConnection() {
+        Connection conn = null;
+
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+
+            conn = DriverManager.getConnection(url, dbusername, dbpassword);
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        return conn;
     }
 
     private boolean checkTableExisting(String tableName) {
@@ -91,7 +110,7 @@ public class Database {
     public void insertQuestion(String tableName, String question_text, char answer, String question_options) {
 
         String query = "INSERT INTO " + tableName + " (question_text, answer, question_options) VALUES (?, ?, ?)";
-        
+
         try (PreparedStatement preparedStatement = conn.prepareStatement(query)) {
 
             preparedStatement.setString(1, question_text);
