@@ -22,7 +22,7 @@ public class Database {
 
     Connection conn = null;
 
-    String url = "jdbc:derby://localhost:1527/QuizGameDB";
+    String url = "jdbc:derby://localhost:1527/QuizGameDB;create=true";
     String dbusername = "aaa";
     String dbpassword = "aaa";
 
@@ -63,11 +63,12 @@ public class Database {
         } catch (Throwable e) {
             System.out.println("error");
             e.printStackTrace();
-        } 
+        }
     }
 
     public Connection automaticDBConnection() {
         Connection conn = null;
+        DatabaseServer.startDerbyServer();
 
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");

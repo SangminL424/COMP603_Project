@@ -226,9 +226,12 @@ public class View extends JFrame {
         resetButton.setFont(new Font("Dialog", Font.BOLD, 20));
 
         winnerMessage.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        winnerMessage.setText("You are now a Millionaire!!");
 
-        winnerPanel.add(winnerMessage, BorderLayout.NORTH);
-        winnerPanel.add(resetButton, BorderLayout.SOUTH);
+        winnerPanel.add(winnerMessage);
+        winnerPanel.add(quitButton);
+        winnerPanel.add(resetButton);
 
         this.getContentPane().removeAll();
         winnerPanel.setVisible(true);
