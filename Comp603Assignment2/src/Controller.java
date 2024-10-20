@@ -56,6 +56,8 @@ public class Controller {
 
         if (current_round == 10) {
             System.out.println("You win");
+            view.winScreen();
+            model.winGame();
         }
     }
 
@@ -63,7 +65,7 @@ public class Controller {
 
     public void multiChoice() {
         updateCurrentEarnings();
-        
+
         removeListeners(view.optionA);
         view.optionA.addActionListener(new ActionListener() {
             @Override
@@ -151,7 +153,7 @@ public class Controller {
 
     public void trueOrFalse() {
         updateCurrentEarnings();
-        
+
         removeListeners(view.trueButton);
         view.trueButton.addActionListener(new ActionListener() {
             @Override
@@ -218,7 +220,7 @@ public class Controller {
 
     public void loseGame() {
         System.out.println("You Lose");
-        
+
         view.loserScreen();
 
         removeListeners(view.resetButton);
@@ -228,6 +230,31 @@ public class Controller {
                 view.resetPanel();
                 resetGame();
                 updateCurrentEarnings();
+            }
+        });
+    }
+
+    public void winGame() {
+        System.out.println("You Win");
+
+        view.winScreen();
+
+        removeListeners(view.resetButton);
+        view.resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.resetPanel();
+                resetGame();
+                updateCurrentEarnings();
+            }
+        });
+
+        removeListeners(view.quitButton);
+        view.quitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("You quit the game");
+                System.exit(0);
             }
         });
     }

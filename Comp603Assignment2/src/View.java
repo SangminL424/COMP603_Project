@@ -33,6 +33,7 @@ public class View extends JFrame {
     JLabel loserMessage = new JLabel("You lose");
     JLabel quitMessage = new JLabel("You quit");
     JLabel currentEarnings = new JLabel("Current Earnings");
+    JLabel winnerMessage = new JLabel("Win");
 
     JLabel userName = new JLabel("Username: ");
     JTextField usernameField = new JTextField(10);
@@ -60,8 +61,8 @@ public class View extends JFrame {
 
         startPanel.setLayout(new BorderLayout());
 
-        titleLabel.setFont(new Font("SansSerif", Font.PLAIN, 50));
-        startButton.setFont(new Font("SansSerif", Font.PLAIN, 20));
+        titleLabel.setFont(new Font("Dialog", Font.BOLD, 50));
+        startButton.setFont(new Font("Dialog", Font.BOLD, 20));
 
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -184,10 +185,11 @@ public class View extends JFrame {
     public void loserScreen() {
         loserPanel.setLayout(new BorderLayout());
 
-        loserMessage.setFont(new Font("SansSerif", Font.PLAIN, 60));
-        resetButton.setFont(new Font("SansSerif", Font.PLAIN, 20));
+        loserMessage.setFont(new Font("Dialog", Font.BOLD, 60));
+        resetButton.setFont(new Font("Dialog", Font.BOLD, 20));
 
         loserMessage.setHorizontalAlignment(SwingConstants.CENTER);
+        loserMessage.setText("You Lose");
 
         loserPanel.add(loserMessage, BorderLayout.NORTH);
         loserPanel.add(resetButton, BorderLayout.SOUTH);
@@ -202,8 +204,8 @@ public class View extends JFrame {
     public void quitScreen() {
         quitPanel.setLayout(new BorderLayout());
 
-        quitMessage.setFont(new Font("SansSerif", Font.PLAIN, 50));
-        resetButton.setFont(new Font("SansSerif", Font.PLAIN, 20));
+        quitMessage.setFont(new Font("Dialog", Font.BOLD, 50));
+        resetButton.setFont(new Font("Dialog", Font.BOLD, 20));
 
         quitMessage.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -213,6 +215,24 @@ public class View extends JFrame {
         this.getContentPane().removeAll();
         quitPanel.setVisible(true);
         this.add(quitPanel);
+        this.revalidate();
+        this.repaint();
+    }
+
+    public void winScreen() {
+        winnerPanel.setLayout(new BorderLayout());
+
+        winnerMessage.setFont(new Font("Dialog", Font.BOLD, 50));
+        resetButton.setFont(new Font("Dialog", Font.BOLD, 20));
+
+        winnerMessage.setHorizontalAlignment(SwingConstants.CENTER);
+
+        winnerPanel.add(winnerMessage, BorderLayout.NORTH);
+        winnerPanel.add(resetButton, BorderLayout.SOUTH);
+
+        this.getContentPane().removeAll();
+        winnerPanel.setVisible(true);
+        this.add(winnerPanel);
         this.revalidate();
         this.repaint();
     }

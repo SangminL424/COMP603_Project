@@ -60,22 +60,6 @@ public class Model {
     public void setUsername(String username) {
         user.setUsername(username);
     }
-    
-    
-    
-    public void quitGame() {
-
-        Statement statement;
-        try {
-            statement = database.conn.createStatement();
-            statement.executeUpdate("UPDATE UserInfo SET score=" + user.getScore() + " WHERE userid='" + user.getUsername() + "'");
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    
 
     public String getMultiQuestionById(int id) {
         return multi.getQuestions().get(id);
@@ -139,5 +123,27 @@ public class Model {
         }
     }
     
-   
+    public void quitGame() {
+
+        Statement statement;
+        try {
+            statement = database.conn.createStatement();
+            statement.executeUpdate("UPDATE UserInfo SET score=" + user.getScore() + " WHERE userid='" + user.getUsername() + "'");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void winGame() {
+
+        Statement statement;
+        try {
+            statement = database.conn.createStatement();
+            statement.executeUpdate("UPDATE UserInfo SET score=" + user.getScore() + " WHERE userid='" + user.getUsername() + "'");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
