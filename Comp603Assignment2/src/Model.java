@@ -123,7 +123,7 @@ public class Model {
         }
     }
     
-    public void quitGame() {
+    public void stopQuiz() {
 
         Statement statement;
         try {

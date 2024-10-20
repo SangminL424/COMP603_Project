@@ -56,8 +56,7 @@ public class Controller {
 
         if (current_round == 10) {
             System.out.println("You win");
-            view.winScreen();
-            model.winGame();
+            winGame();
         }
     }
 
@@ -142,11 +141,11 @@ public class Controller {
             }
         });
 
-        removeListeners(view.quitButton);
-        view.quitButton.addActionListener(new ActionListener() {
+        removeListeners(view.stopButton);
+        view.stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                quitGame();
+                stopQuiz();
             }
         });
     }
@@ -192,17 +191,17 @@ public class Controller {
             }
         });
 
-        removeListeners(view.quitButton);
-        view.quitButton.addActionListener(new ActionListener() {
+        removeListeners(view.stopButton);
+        view.stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                model.quitGame();
-                quitGame();
+                model.stopQuiz();
+                stopQuiz();
             }
         });
     }
 
-    public void quitGame() {
+    public void stopQuiz() {
         System.out.println("You clicked the quit button");
 
         view.quitScreen();
@@ -214,6 +213,15 @@ public class Controller {
                 view.resetPanel();
                 resetGame();
                 updateCurrentEarnings();
+            }
+        });
+        
+        removeListeners(view.quitButton);
+        view.quitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("You quit the game");
+                System.exit(0);
             }
         });
     }
@@ -230,6 +238,15 @@ public class Controller {
                 view.resetPanel();
                 resetGame();
                 updateCurrentEarnings();
+            }
+        });
+        
+        removeListeners(view.quitButton);
+        view.quitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("You quit the game");
+                System.exit(0);
             }
         });
     }

@@ -1,6 +1,7 @@
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -45,6 +46,7 @@ public class View extends JFrame {
     JButton optionD = new JButton("D");
     JButton trueButton = new JButton("True");
     JButton falseButton = new JButton("False");
+    JButton stopButton = new JButton("stop quiz");
     JButton quitButton = new JButton("quit game");
     JButton resetButton = new JButton("Restart");
 
@@ -110,7 +112,7 @@ public class View extends JFrame {
         buttonPanel.removeAll();
         userPanel.removeAll();
 
-        multiquestion.setFont(new Font("Dialog", Font.BOLD, 20));
+        multiquestion.setFont(new Font("Dialog", Font.BOLD, 40));
         questionPanel.add(multiquestion);
 
         multioptions.setFont(new Font("Dialog", Font.BOLD, 25));
@@ -129,7 +131,7 @@ public class View extends JFrame {
         buttonPanel.setLayout(new GridLayout(2, 2));
 
         userPanel.add(currentEarnings);
-        userPanel.add(quitButton);
+        userPanel.add(stopButton);
 
         this.getContentPane().removeAll();
         questionPanel.setVisible(true);
@@ -152,7 +154,7 @@ public class View extends JFrame {
         buttonPanel.removeAll();
         userPanel.removeAll();
 
-        truefalseoptions.setFont(new Font("Dialog", Font.BOLD, 20));
+        truefalseoptions.setFont(new Font("Dialog", Font.BOLD, 40));
         optionsPanel.add(truefalseoptions);
 
         truefalsequestion.setFont(new Font("Dialog", Font.BOLD, 25));
@@ -167,7 +169,7 @@ public class View extends JFrame {
         buttonPanel.setLayout(new GridLayout(1, 2));
 
         userPanel.add(currentEarnings);
-        userPanel.add(quitButton);
+        userPanel.add(stopButton);
 
         this.getContentPane().removeAll();
         optionsPanel.setVisible(true);
@@ -183,16 +185,24 @@ public class View extends JFrame {
     }
 
     public void loserScreen() {
+        loserPanel.removeAll();
+        
         loserPanel.setLayout(new BorderLayout());
 
-        loserMessage.setFont(new Font("Dialog", Font.BOLD, 60));
+        loserMessage.setFont(new Font("Dialog", Font.BOLD, 50));
         resetButton.setFont(new Font("Dialog", Font.BOLD, 20));
+        quitButton.setFont(new Font("Dialog", Font.BOLD, 20));
 
         loserMessage.setHorizontalAlignment(SwingConstants.CENTER);
         loserMessage.setText("You Lose");
 
-        loserPanel.add(loserMessage, BorderLayout.NORTH);
-        loserPanel.add(resetButton, BorderLayout.SOUTH);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
+        buttonPanel.add(resetButton);
+        buttonPanel.add(quitButton);
+
+        loserPanel.add(loserMessage, BorderLayout.CENTER);
+        loserPanel.add(buttonPanel, BorderLayout.SOUTH);
 
         this.getContentPane().removeAll();
         loserPanel.setVisible(true);
@@ -202,15 +212,24 @@ public class View extends JFrame {
     }
 
     public void quitScreen() {
+        quitPanel.removeAll();
+        
         quitPanel.setLayout(new BorderLayout());
 
         quitMessage.setFont(new Font("Dialog", Font.BOLD, 50));
         resetButton.setFont(new Font("Dialog", Font.BOLD, 20));
+        quitButton.setFont(new Font("Dialog", Font.BOLD, 20));
 
         quitMessage.setHorizontalAlignment(SwingConstants.CENTER);
+        quitMessage.setText("You Quit");
 
-        quitPanel.add(quitMessage, BorderLayout.NORTH);
-        quitPanel.add(resetButton, BorderLayout.SOUTH);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
+        buttonPanel.add(resetButton);
+        buttonPanel.add(quitButton);
+
+        quitPanel.add(quitMessage, BorderLayout.CENTER);
+        quitPanel.add(buttonPanel, BorderLayout.SOUTH);
 
         this.getContentPane().removeAll();
         quitPanel.setVisible(true);
@@ -220,18 +239,24 @@ public class View extends JFrame {
     }
 
     public void winScreen() {
+        winnerPanel.removeAll();
+        
         winnerPanel.setLayout(new BorderLayout());
 
         winnerMessage.setFont(new Font("Dialog", Font.BOLD, 50));
         resetButton.setFont(new Font("Dialog", Font.BOLD, 20));
+        quitButton.setFont(new Font("Dialog", Font.BOLD, 20));
 
         winnerMessage.setHorizontalAlignment(SwingConstants.CENTER);
-        
         winnerMessage.setText("You are now a Millionaire!!");
 
-        winnerPanel.add(winnerMessage);
-        winnerPanel.add(quitButton);
-        winnerPanel.add(resetButton);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
+        buttonPanel.add(resetButton);
+        buttonPanel.add(quitButton);
+
+        winnerPanel.add(winnerMessage, BorderLayout.CENTER);
+        winnerPanel.add(buttonPanel, BorderLayout.SOUTH);
 
         this.getContentPane().removeAll();
         winnerPanel.setVisible(true);
