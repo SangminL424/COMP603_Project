@@ -134,7 +134,7 @@ public class Database {
         insertQuestion("multichoicequestions", "Which element has the chemical symbol ''O''?", 'A', "(A)Oxygen (B)Gold (C)Iron (D)Silver");
         insertQuestion("multichoicequestions", "Who wrote the play \"Romeo and Juliet\"?", 'B', "(A)Charles Dickens (B)William Shakespeare (C)Mark Twain (D)Jane Austen");
         insertQuestion("multichoicequestions", "What is the primary language spoken in Brazil?", 'C', "(A)Spanish (B)French (C)Portuguese (D)English");
-        insertQuestion("multichoicequestions", "What is the chemical formula for water?", 'B', "(a)CO2 (b)H2O (c)NaCl (d)O2");
+        insertQuestion("multichoicequestions", "What is the chemical formula for water?", 'B', "(A)CO2 (B)H2O (C)NaCl (D)O2");
         insertQuestion("multichoicequestions", "Who was the first president of the United States?", 'B', "(A)Abraham Lincoln (B)George Washington (C)Thomas Jefferson (D)John Adams");
         insertQuestion("multichoicequestions", "Which programming language is primarily used for Android app development?", 'C', "(A)Python (B)Swift (C)Java (D)Ruby");
         insertQuestion("multichoicequestions", "Which organ in the human body is responsible for pumping blood?", 'D', "(A)Brain (B)Lungs (C)Liver (D)Heart");
