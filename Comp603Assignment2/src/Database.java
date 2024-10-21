@@ -9,35 +9,35 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author 64224
- */
+
 public class Database {
 
     Connection conn = null;
 
+    //database connection details
     String url = "jdbc:derby://localhost:1527/QuizGameDB;create=true";
     String dbusername = "aaa";
     String dbpassword = "aaa";
 
+    //setup database
     public void dbsetup() {
         try {
+
+            //automatically connect to the database without manually connecting
             conn = automaticDBConnection();
 
             Statement statement = conn.createStatement();
 
+            //check if userinfo table already exists
+            //if it doesn't exist, create a new table userinfo with userid and score
             String userInfo = "UserInfo";
             if (!checkTableExisting(userInfo)) {  //if the table doesn't exist
                 statement.executeUpdate("CREATE TABLE " + userInfo + " (userid VARCHAR(12), score INT)");  //creates new userinfo table with userid and score
                 System.out.println("Created table " + userInfo);
             }
 
+            //check if multichoicequestions table already exists
+            //if it doesn't exist, create a new table multichoicequestions with id, question_text, answers and question_options
             String multiChoice = "multichoicequestions";
             if (!checkTableExisting(multiChoice)) {  //if the table doesn't exist
                 statement.executeUpdate("CREATE TABLE " + multiChoice + " (id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,"
@@ -45,9 +45,11 @@ public class Database {
                         + " question_options VARCHAR(500) NOT NULL)");  //create new multichoicequestions table with id, question text, answer and question options
                 System.out.println("Created table " + multiChoice);
 
-                insertMultiChoice();  //insert questions into the database
+                insertMultiChoice();  //insert multichoice questions into the database if the table didn't already exist
             }
 
+            //check if trueorfalsequestions table already exists
+            //if it doesn't exist, create a new table trueorfalsequestions with id, question_text, answers and question_options
             String trueOrFalse = "trueorfalsequestions";
             if (!checkTableExisting(trueOrFalse)) {  //if the table doesn't exist
                 statement.executeUpdate("CREATE TABLE " + trueOrFalse + " (id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,"
@@ -55,7 +57,7 @@ public class Database {
                         + " question_options VARCHAR(500) NOT NULL)");  //create new trueorfalsequestions table with id, question text, answer and question options
                 System.out.println("Created table " + trueOrFalse);
 
-                insertTrueFalse();  //insert questions into the database
+                insertTrueFalse();  //insert true or false questions into the database if the table didn't already exist
             }
 
             statement.close();
@@ -66,13 +68,18 @@ public class Database {
         }
     }
 
+    //connects to the derby database automatically
     public Connection automaticDBConnection() {
         Connection conn = null;
+
+        //starts the derby database server
         DatabaseServer.startDerbyServer();
 
         try {
+            //load the derby client driver
             Class.forName("org.apache.derby.jdbc.ClientDriver");
 
+            //create a connection to the database using the database connection details
             conn = DriverManager.getConnection(url, dbusername, dbpassword);
 
         } catch (ClassNotFoundException ex) {
@@ -84,6 +91,7 @@ public class Database {
         return conn;
     }
 
+    //check if a specific table already exists
     private boolean checkTableExisting(String tableName) {
         boolean flag = false;
 
@@ -94,7 +102,7 @@ public class Database {
             ResultSet rs = metadata.getTables(null, null, tableName.toUpperCase(), types);
 
             if (rs.next()) {
-                flag = true;
+                flag = true; //set boolean flag to true if the table already exists
                 System.out.println(tableName + " exists");
             }
 
@@ -108,6 +116,7 @@ public class Database {
         return flag;
     }
 
+    //inserts a question into a specified table
     public void insertQuestion(String tableName, String question_text, char answer, String question_options) {
 
         String query = "INSERT INTO " + tableName + " (question_text, answer, question_options) VALUES (?, ?, ?)";
@@ -117,16 +126,18 @@ public class Database {
             preparedStatement.setString(1, question_text);
             preparedStatement.setString(2, String.valueOf(answer));
             preparedStatement.setString(3, question_options);
-            preparedStatement.executeUpdate();
 
-            System.out.println("Questions inserted");
+            preparedStatement.executeUpdate();  //executes the query
+
+            System.out.println("Question inserted");
 
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void insertMultiChoice() {  //insert multi choice questions into the database
+    //insert multi choice questions into the database
+    public void insertMultiChoice() {
 
         insertQuestion("multichoicequestions", "What is the capital city of France?", 'C', "(A)Madrid (B)Berlin (C)Paris (D)Rome");
         insertQuestion("multichoicequestions", "Which planet is known as the Red Planet?", 'B', "(A)Earth (B)Mars (C)Venus (D)Jupiter");
@@ -140,7 +151,8 @@ public class Database {
         insertQuestion("multichoicequestions", "Which organ in the human body is responsible for pumping blood?", 'D', "(A)Brain (B)Lungs (C)Liver (D)Heart");
     }
 
-    public void insertTrueFalse() {  //insert true or false questions into the database
+    //insert true or false questions into the database
+    public void insertTrueFalse() {
 
         insertQuestion("trueorfalsequestions", "The star sign aquarius is represented by a tiger.", 'F', "True or False?");
         insertQuestion("trueorfalsequestions", "''A'' is the most common letter used in the English language.", 'F', "True or False?");

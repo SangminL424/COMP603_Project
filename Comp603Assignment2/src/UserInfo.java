@@ -1,20 +1,10 @@
 
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-
-/**
- *
- * @author zwty2
- */
 public class UserInfo {
 
     private String username;
     private int score = 0;
 
+    //method to increase the user's earnings per round by certain amounts
     public void earningsPerRound(int round) {  //amount of earned money goes up every round
 
         switch (round) {  //for every round the amount of earnings go up
@@ -52,30 +42,19 @@ public class UserInfo {
     }
     
     
-    /**
-     * @return the username
-     */
+    //getter and setter methods for username and score
     public String getUsername() {  //getter
         return username;
     }
 
-    /**
-     * @param username the username to set
-     */
     public void setUsername(String username) {  //setter
         this.username = username;
     }
 
-    /**
-     * @return the score
-     */
     public int getScore() {
         return score;
     }
 
-    /**
-     * @param score the score to set
-     */
     public void setScore(int score) {
         this.score = score;
     }

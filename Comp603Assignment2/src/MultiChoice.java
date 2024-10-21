@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,20 +7,18 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author zwty2
- */
 public class MultiChoice extends Questions {
-    
+
     private ArrayList<String> questions = new ArrayList<>();
     private ArrayList<Character> answers = new ArrayList<>();
     private ArrayList<String> options = new ArrayList<>();
 
+    //constructor that takes a database object and passes it to the super class Questions
     public MultiChoice(Database database) {
         super(database);
     }
 
+    //Overide the method to load the questions, answers and options from the multichoicequestions table of the database into ArrayLists
     @Override
     public void loadQuestions() {
         {
@@ -36,9 +30,9 @@ public class MultiChoice extends Questions {
                 ResultSet rs = preparedStatement.executeQuery();
 
                 while (rs.next()) {
-                        getQuestions().add(rs.getString("question_text"));
-                        getAnswers().add(rs.getString("answer").charAt(0));
-                        getOptions().add(rs.getString("question_options"));
+                    getQuestions().add(rs.getString("question_text"));
+                    getAnswers().add(rs.getString("answer").charAt(0));
+                    getOptions().add(rs.getString("question_options"));
                 }
 
                 if (rs != null) {
@@ -52,24 +46,15 @@ public class MultiChoice extends Questions {
         }
     }
 
- 
-    /**
-     * @return the questions
-     */
+    //getter methods for getting questions, answers, options
     public ArrayList<String> getQuestions() {
         return questions;
     }
 
-    /**
-     * @return the answers
-     */
     public ArrayList<Character> getAnswers() {
         return answers;
     }
 
-    /**
-     * @return the options
-     */
     public ArrayList<String> getOptions() {
         return options;
     }
