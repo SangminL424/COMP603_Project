@@ -22,7 +22,7 @@ public class Controller {
                 }
             }
         });
-        
+
         removeListeners(view.quitButton);
         view.quitButton.addActionListener(new ActionListener() {
             @Override
@@ -154,6 +154,8 @@ public class Controller {
         view.stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                view.stopMessage.setText("You Won $" + model.getCurrentEarnings(current_round) + "!!");
+                model.stopQuiz();
                 stopQuiz();
             }
         });
@@ -220,12 +222,10 @@ public class Controller {
         view.resetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                view.resetPanel();
                 resetGame();
-                updateCurrentEarnings();
             }
         });
-        
+
         removeListeners(view.quitButton);
         view.quitButton.addActionListener(new ActionListener() {
             @Override
@@ -245,12 +245,10 @@ public class Controller {
         view.resetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                view.resetPanel();
                 resetGame();
-                updateCurrentEarnings();
             }
         });
-        
+
         removeListeners(view.quitButton);
         view.quitButton.addActionListener(new ActionListener() {
             @Override
@@ -270,9 +268,7 @@ public class Controller {
         view.resetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                view.resetPanel();
                 resetGame();
-                updateCurrentEarnings();
             }
         });
 
