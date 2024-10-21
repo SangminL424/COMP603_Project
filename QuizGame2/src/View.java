@@ -57,7 +57,7 @@ public class View extends JFrame {
     //constructor that sets up the main window
     public View() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1200, 1000);  // Set window size
+        this.setSize(1800, 1000);  // Set window size
         this.setResizable(false);  // Prevent resizing
         this.setLocationRelativeTo(null);  // Center the window on screen
         startScreen();  // Show the start screen when the window opens
