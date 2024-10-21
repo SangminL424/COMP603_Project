@@ -231,6 +231,7 @@ public class Controller {
         System.out.println("You Win");
 
         view.winScreen();  //change the screen to win screen
+        model.winGame();
 
         //listeners for the reset and quit buttons
         removeListeners(view.resetButton);
